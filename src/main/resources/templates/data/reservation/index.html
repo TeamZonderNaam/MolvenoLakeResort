@@ -1,0 +1,44 @@
+{{> data/dashboard/header}} <!-- mustache <head> - located in templates -->
+{{> data/dashboard/navbar}} <!-- mustache navbar - located in templates -->
+{{> data/dashboard/sidebar}} <!-- mustache sidebar - located in templates -->
+
+<!-- Reservation content -->
+<head>
+<link rel="stylesheet" type="text/css" href="/JqueryUI/jquery-ui.css">
+<link rel="stylesheet" type="text/css" href="/JqueryUI/jquery-ui.structure.css">
+<link rel="stylesheet" type="text/css" href="/JqueryUI/jquery-ui.theme.css">
+</head>
+
+<div class="container">
+    <div class="row justify-content-md-center">
+        <div class="datepicker_wrapper">
+            <p>Date: <input type="text" id="datepicker"></p>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-12">
+            <table id="calendarTable" class="table table-striped table-bordered nowrap" style="width:100%">
+                <thead>
+                <tr>
+                    <th>Guest-nr</th>
+                    <th>Guest Name</th>
+                    <th>RoomNr</th>
+                    <th>StartDate</th>
+                    <th>EndDate</th>
+                </tr>
+                </thead>
+                <tbody>
+                <!-- body is filled with data from the backend -->
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<div id="calendarContainer" style="float:left"></div>
+<div id="organizerContainer"></div>
+
+<!-- Calendar JS-->
+<script src="/JqueryUI/jquery-ui.js"></script>
+<script src="/js/calendar.js"></script>
+{{> data/dashboard/footer}}

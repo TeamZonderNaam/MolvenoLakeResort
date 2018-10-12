@@ -1,0 +1,17 @@
+td.details-control {
+    cursor: pointer;
+}
+
+
+.edit-btn {
+    margin-left: 10px; 
+}
+
+.modal-delete-cance-btn {
+    margin-top: 20px; 
+}
+
+#deleteSupplierForm {
+    padding-left: 0px; 
+}
+

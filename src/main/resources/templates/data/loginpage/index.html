@@ -1,0 +1,32 @@
+{{> data/dashboard/header}} <!-- mustache <head> - located in templates -->
+
+    <body id="page-top">
+    
+    <div class="container">
+        <h2>Welcome to Molveno Lake</h2>
+        <h1>Please log in</h1>
+
+        <form class="col-sm-12" data-toggle="validator" role="form" id="NewLoginForm" onsubmit="return false;">
+            <input type="hidden" id="id2" value="">
+            <div class="form-group">
+                <label for="inputTitle" class="control-label">Email</label>
+                <input type="email" class="form-control" id="email2" placeholder="Enter email"
+                       data-error="No valid input" required>
+            </div>
+            <div class="form-group">
+                <label for="inputAuthor" class="control-label">Password</label>
+                <input type="password" class="form-control" id="password2" placeholder="Enter password"
+                       required>
+            </div>
+            <div class="form-group">
+                <button type="text" class="btn btn-primary">Submit</button>
+            </div>
+        </form>
+    
+    </div>
+    
+    <!-- Account JS -->
+    <script src="/js/script.js"></script>
+    <script src="/js/accountCRUD.js"></script>
+    
+    {{> data/dashboard/footer}}
