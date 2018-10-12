@@ -11,7 +11,12 @@ $(function() {
 
     $(".pay").click(function() {
         var name = $("#hotel .name").val();
-        console.log("TODO Pay for customer: "+name);
+
+        URLUtil.post("/api/order/pay/16", {name: name}).then(function() {
+            $("#hotel-modal").modal('toggle');
+        }, function() {
+            alert("Something went wrong");
+        });
     });
 
     URLUtil.get(BASE_URL).then(function(arr) {
@@ -41,12 +46,11 @@ $(function() {
     function orderItem() {
         var item = $(this).closest(".item");
         var id = item.find(".id").val();
-        console.log("Item ID:", id);
-        
+
         var order = {
             id: id
         };
-        URLUtil.post("/api/order/add/70", order).then(function() {
+        URLUtil.post("/api/order/add/16", order).then(function() {
             var name = item.find(".title").html();
             var modal = $("#added-order-modal");
             modal.find(".name").html(name);

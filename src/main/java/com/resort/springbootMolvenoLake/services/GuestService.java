@@ -39,4 +39,13 @@ public class GuestService {
     public void delete(final long id) {
         this.repository.deleteById(id);
     }
+
+    public Guest read(final String name) {
+        Optional<Guest> guest = repository.findByName(name);
+        if (guest.isPresent()) {
+            return guest.get();
+        }
+
+        return null;
+    }
 }

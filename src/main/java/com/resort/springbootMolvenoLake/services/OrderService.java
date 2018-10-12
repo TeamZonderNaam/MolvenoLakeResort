@@ -1,6 +1,7 @@
 package com.resort.springbootMolvenoLake.services;
 
 import com.resort.springbootMolvenoLake.enums.OrderStatus;
+import com.resort.springbootMolvenoLake.models.Guest;
 import com.resort.springbootMolvenoLake.models.MenuItem;
 import com.resort.springbootMolvenoLake.models.Order;
 import com.resort.springbootMolvenoLake.models.ServingOrder;
@@ -22,6 +23,9 @@ public class OrderService {
 
     @Autowired
     private ServingOrderService servingService;
+
+    @Autowired
+    private GuestService guestService;
 
     public int create(Order order) {
         if (order.getTable() != null) {

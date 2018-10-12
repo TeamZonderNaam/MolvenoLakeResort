@@ -1,7 +1,8 @@
 package com.resort.springbootMolvenoLake.controllers.api;
 
-import com.resort.springbootMolvenoLake.models.MenuItem;
-import com.resort.springbootMolvenoLake.models.Order;
+import com.resort.springbootMolvenoLake.models.*;
+import com.resort.springbootMolvenoLake.repositories.OrderBillRepository;
+import com.resort.springbootMolvenoLake.services.GuestService;
 import com.resort.springbootMolvenoLake.services.OrderService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
@@ -13,6 +14,12 @@ public class OrderController {
 
     @Autowired
     private OrderService orderService;
+
+    @Autowired
+    private GuestService guestService;
+
+    @Autowired
+    private OrderBillRepository orderBillRepository;
 
     @GetMapping(value = "/", produces = MediaType.APPLICATION_JSON_VALUE)
     public Iterable<Order> get() {
@@ -45,7 +52,32 @@ public class OrderController {
     @PostMapping(value = "/add/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
     public String addToOrder(@PathVariable("id") int id, @RequestBody MenuItem item) {
         orderService.addMenuItem(id, item);
-        System.out.println("Got Order");
         return "{}";
+    }
+
+    private OrderBill convertOrder(Order order, Guest guest) {
+        OrderBill bill = new OrderBill();
+
+        bill.setQuantity(1);
+        bill.setGuest(guest);
+        bill.setPrice(order.getMenuCostPrice());
+        bill.setProduct("Restaurant Diner");
+
+        return bill;
+    }
+
+    @PostMapping(value = "/pay/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
+    public String pay(@PathVariable("id") int id, @RequestBody Name name) {
+        Order order = orderService.read(id);
+        Guest guest = guestService.read(name.getName());
+
+
+        if (guest != null) {
+            OrderBill bill = convertOrder(order, guest);
+            orderBillRepository.save(bill);
+            return "{}";
+        }
+
+        return "";
     }
 }

@@ -12,7 +12,7 @@ public class Guest {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
 
-    private String fullName = getFirstName() + " " + getLastName();
+    private String name;
     private String firstName;
     private String lastName;
     private String streetName;
@@ -29,12 +29,23 @@ public class Guest {
 
     public Guest(){}
 
-    public String getFullName() {
-        return fullName;
+    public String getName() {
+        if (this.name == null) {
+            if (this.firstName != null && this.lastName != null) {
+                name = this.firstName + " " + this.lastName;
+            }
+            else if (this.lastName != null) {
+                name = this.lastName;
+            }
+            else if (this.firstName != null) {
+                name = this.firstName;
+            }
+        }
+        return name;
     }
 
-    public void setFullName(String fullName) {
-        this.fullName = fullName;
+    public void setName(String name) {
+        this.name = name;
     }
 
     public String getFirstName() {
@@ -43,6 +54,7 @@ public class Guest {
 
     public void setFirstName(String firstName) {
         this.firstName = firstName;
+        this.name = getName();
     }
 
     public String getLastName() {
@@ -51,6 +63,7 @@ public class Guest {
 
     public void setLastName(String lastName) {
         this.lastName = lastName;
+        this.name = getName();
     }
 
     public String getStreetName() {
