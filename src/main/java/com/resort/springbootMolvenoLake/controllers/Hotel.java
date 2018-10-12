@@ -28,6 +28,8 @@ public class Hotel
     private com.resort.springbootMolvenoLake.controllers.api.RoomController roomController;// = new RoomController();
     @Autowired
     private GuestService guestController;//= new GuestsController();
+    @Autowired
+    private OrderBillController orderBillController;
 
 
     public HotelReservationController getHotelReservationController() {
@@ -40,5 +42,9 @@ public class Hotel
 
     public GuestService getGuestController() {
         return guestController;
+    }
+
+    public OrderBillController getOrderBillController() {
+        return orderBillController;
     }
 }
