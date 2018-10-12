@@ -87,7 +87,6 @@ $(document).ready(function () {
     })
 
     // Load data first.
-    generateDummyData(); 
     getData();
 });
 
@@ -308,40 +307,3 @@ function format ( d ) {
         '</tr>'+
     '</table>';
 }
-
-// Generate dummy data in database
-function generateDummyData() {
-    let dummySupplier = {
-        "companyName": "Hanos",
-        "contact": "Erik de Vries", 
-        "streetName": "Ravenswade",
-        "houseNumber": "94",
-        "additionToHouseNumber": "a",
-        "postcode": "3439LD",
-        "city": "Nieuwegein", 
-        "country": "Netherlands",
-        "stateOrProvince": "Utrecht",
-        "email": "erik.de.vries@hanos.com",
-        "phoneNumber": "0031348553191",
-        "vatNumber": "NL001234567B01",
-        "kvkNumber": "53225589"
-    }
-
-        // Convert JS object to JSON.
-        let validJsonSupplier = JSON.stringify(dummySupplier);
-
-        // Post JSON to endpoint.
-        $.ajax({
-            url: "/api/supplier/",
-            type: "post",
-            data: validJsonSupplier,
-            contentType: "application/json",
-            success: function (result) {
-                // On successful post, reload data to get the added one as well.
-                getData();
-            }
-        });
-
-
-}
-

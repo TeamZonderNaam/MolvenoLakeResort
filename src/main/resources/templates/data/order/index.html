@@ -1,0 +1,194 @@
+{{> data/dashboardresto/header}}
+{{> data/dashboardresto/navbar}}
+{{> data/dashboardresto/sidebar}}
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <h1>Orders</h1>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>Table</th>
+                        <th>Status</th>
+                        <th>Cost Price</th>
+                        <th>Items</th>
+                        <th>Tools</th>
+                    </tr>
+                </thead>
+                <tbody></tbody>
+            </table>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-12">
+            <div class="row">
+                <div class="col-md-6">
+                    <a class="btn btn-secondary btn-block" href="/">
+                        Back
+                    </a>
+                </div>
+                <div class="col-md-6">
+                    <button class="btn btn-primary btn-block add-item" data-toggle="modal" data-target="#item-modal">
+                        <i class="fas fa-plus"></i> Add
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="item-modal" tabindex="-1" role="dialog" aria-labelledby="item-modal" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Orders</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <form id="add-skill" onsubmit="return false">
+                <input type="hidden" class="id">
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label>Status</label>
+                        <select class="form-control status">
+                            <option value="0">Open</option>
+                            <option value="1">Busy</option>
+                            <option value="2">Done</option>
+                        </select>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label>Table number</label>
+                                <input class="form-control number" type="number" name="number" placeholder="Enter a table number">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-primary save">Save changes</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="delete-modal" tabindex="-1" role="dialog" aria-labelledby="delete-modal" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Are you sure you want to remove order <span id="name"></span>?</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
+                <button type="submit" class="btn btn-danger delete">Yes</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="menuItems-modal" tabindex="-1" role="dialog" aria-labelledby="menuItems-modal" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">menuItems</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <form id="add-menuItem" onsubmit="return false">
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <ul class="list-group">
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Back</button>
+
+                    <button class="btn btn-primary add" data-toggle="modal" data-target="#servingOrder-modal">
+                        <i class="fas fa-plus"></i> Add menu item
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="servingOrder-modal" tabindex="-1" role="dialog" aria-labelledby="servingOrder-modal" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Serving</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <form id="add-servingOrder" onsubmit="return false">
+                <input type="hidden" name="orderId" class="orderId">
+                <input type="hidden" name="id" class="id">
+
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label>Amount needed</label>
+                        <input class="form-control amount" type="number" name="amount" placeholder="Enter an amount">
+                    </div>
+                    <div class="form-group">
+                        <label>MenuItem</label>
+                        <select class="form-control menuItem" name="menuItem"></select>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-primary save">Save changes</button></div>
+            </form>
+        </div>
+    </div>
+</div>
+
+
+<div class="modal fade" id="delete-servingOrder-modal" tabindex="-1" role="dialog" aria-labelledby="delete-servingOrder-modal" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Are you sure you want to remove item <span class="name"></span>?</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
+                <button type="submit" class="btn btn-danger delete">Yes</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="/js/order/main.js"></script>
+<script src="/js/order/get.js"></script>
+<script src="/js/order/create.js"></script>
+<script src="/js/order/edit.js"></script>
+<script src="/js/order/delete.js"></script>
+
+<script src="/js/order/servingOrder/get.js"></script>
+<script src="/js/order/servingOrder/add.js"></script>
+<script src="/js/order/servingOrder/edit.js"></script>
+<script src="/js/order/servingOrder/delete.js"></script>
+
+<script src="/js/order/servingOrder/getfood.js"></script>
+<script src="/js/order/servingOrder/getdrinks.js"></script>
+
+{{> data/dashboardresto/footer}}

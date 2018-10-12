@@ -1,0 +1,9 @@
+
+
+#add-menuItem .orderItem .amount:after{
+    content: 'x';
+}
+
+.tool {
+    float: right;
+}

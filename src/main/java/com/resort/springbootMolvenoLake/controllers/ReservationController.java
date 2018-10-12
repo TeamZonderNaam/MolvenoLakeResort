@@ -6,11 +6,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import java.util.Map;
 
 @Controller("reservationcontroller")
-@RequestMapping("/calendar")
+@RequestMapping("/reservation")
 public class ReservationController {
     @RequestMapping("/")
     public String index(Map<String, Object> model) {
-        model.put("title", "Dashboard");
+        model.put("title", "Reserve a Table");
         return "data/reservation/index";
     }
 }

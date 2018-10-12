@@ -1,44 +1,97 @@
-{{> data/dashboard/header}} <!-- mustache <head> - located in templates -->
-{{> data/dashboard/navbar}} <!-- mustache navbar - located in templates -->
-{{> data/dashboard/sidebar}} <!-- mustache sidebar - located in templates -->
-
-<!-- Reservation content -->
-<head>
-<link rel="stylesheet" type="text/css" href="/JqueryUI/jquery-ui.css">
-<link rel="stylesheet" type="text/css" href="/JqueryUI/jquery-ui.structure.css">
-<link rel="stylesheet" type="text/css" href="/JqueryUI/jquery-ui.theme.css">
-</head>
+{{> data/header}}
 
 <div class="container">
-    <div class="row justify-content-md-center">
-        <div class="datepicker_wrapper">
-            <p>Date: <input type="text" id="datepicker"></p>
-        </div>
-    </div>
     <div class="row">
-        <div class="col-sm-12">
-            <table id="calendarTable" class="table table-striped table-bordered nowrap" style="width:100%">
-                <thead>
-                <tr>
-                    <th>Guest-nr</th>
-                    <th>Guest Name</th>
-                    <th>RoomNr</th>
-                    <th>StartDate</th>
-                    <th>EndDate</th>
-                </tr>
-                </thead>
-                <tbody>
-                <!-- body is filled with data from the backend -->
-                </tbody>
-            </table>
+        <div class="col-md-12">
+            <h1>Reservation</h1>
+
+            <h5 id="status"></h5>
+
+            <div class="row">
+                <div class="col-md-6">
+                    <a class="btn btn-secondary btn-block" href="/">
+                        Back
+                    </a>
+                </div>
+                <div class="col-sm">
+                    <button class="btn btn-primary btn-block add-item" data-toggle="modal" data-target="#item-modal">
+                        <i class="fas fa-plus"></i> Reserve
+                    </button>
+                </div>
+            </div>
         </div>
     </div>
 </div>
 
-<div id="calendarContainer" style="float:left"></div>
-<div id="organizerContainer"></div>
+<div class="modal fade" id="item-modal"  tabindex="-1" role="dialog" aria-labelledby="item-modal" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">New Reservation</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <form id="add-skill" onsubmit="return false">
+                <div class="modal-body">
 
-<!-- Calendar JS-->
-<script src="/JqueryUI/jquery-ui.js"></script>
-<script src="/js/calendar.js"></script>
-{{> data/dashboard/footer}}
+                    <div class="form-group choosetimelabel" id="choosetimelabel">
+                        <h3>Choose amount of attendees</h3>
+                        <h3>Choose amount a date</h3>
+                    </div>
+
+                    <div class="form-group choosetimelabel" id="choosetimeframelabel" style="display:none">
+                        <h3>Choose a desired time frame</h3>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Guest</label>
+                        <input class="form-control guest name" type="text" name="guestname" placeholder="Enter a guest name">
+                    </div>
+
+                    <div class="form-group">
+                        <label>Attendees</label>
+                        <input class="form-control amount" type="number" name="name" placeholder="Enter amount of attendees" value="1">
+                    </div>
+
+                    <div class="form-group">
+                        <label>Children seats</label>
+                        <input class="form-control childseats" type="number" name="name" placeholder="Enter amount of children" value="0">
+                    </div>
+
+                    <div class="form-group">
+                        <label>Date</label>
+                        <input class="form-control datepicker_wrapper" type="text" id="datepicker"></p>
+                    </div>
+
+                    <div class="form-group" style="display:none" id="timeDiv">
+                        <label>Time</label>
+                        <select class="form-control time" name ="time" id="time"></select>
+                    </div>
+
+                    <div class="form-group" style="display:none" id="parkingDiv">
+                        <label>Parking</label>
+                        <input class="form-control parking" type="checkbox" value="true" id="parking">
+                    </div>
+            </div>
+
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Stop</button>
+                    <button type="submit" class="btn btn-primary save" style="display:none" id="save">Book now</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+</div>
+
+<script src="/js/reservation/main.js"></script>
+<script src="/js/reservation/create.js"></script>
+<script src="/lib/jquery/jquery-ui.js"></script>
+
+<!--<script src="/lib/reservation/time/timeslot.js"></script>-->
+<script src="/js/reservation/calendar.js"></script>
+
+
+{{> data/footer}}
